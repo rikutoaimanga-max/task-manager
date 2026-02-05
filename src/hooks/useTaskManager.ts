@@ -62,7 +62,6 @@ export const useTaskManager = () => {
                 const scheduledTime = new Date(task.nextNotificationAt);
 
                 if (scheduledTime <= now) {
-                    console.log('Notification triggered for:', task.title);
                     // Send notification
                     sendNotification(`時間です: ${task.title}`, {
                         body: `${task.intervalValue}${task.intervalUnit === 'minutes' ? '分' :
