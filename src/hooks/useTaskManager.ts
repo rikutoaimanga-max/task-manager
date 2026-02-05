@@ -62,12 +62,14 @@ export const useTaskManager = () => {
                 const scheduledTime = new Date(task.nextNotificationAt);
 
                 if (scheduledTime <= now) {
+                    console.log('Notification triggered for:', task.title);
                     // Send notification
                     sendNotification(`時間です: ${task.title}`, {
                         body: `${task.intervalValue}${task.intervalUnit === 'minutes' ? '分' :
-                                task.intervalUnit === 'hours' ? '時間' : '日'
+                            task.intervalUnit === 'hours' ? '時間' : '日'
                             }経過しました。`,
-                        tag: task.id
+                        tag: task.id,
+                        requireInteraction: true // 通知を消すまで表示し続ける（ブラウザによる）
                     });
 
                     // Schedule next notification
